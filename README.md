@@ -1,3 +1,11 @@
+imagem 1
+
+![Tela Lista de Usuários](assets/lista.png)
+
+imagem 2
+
+![Tela Lista de Usuários](assets/detalhesUsuario.png)
+
 1) O que é uma rota dinâmica?
 Ela é uma rota que possui diferentes parâmetro na url. Por exemplo a rota que adicionei no código: 
     {
