@@ -1,0 +1,25 @@
+.container {
+  max-width: 600px;
+  margin: 30px auto;
+  font-family: Arial, sans-serif;
+}
+
+a {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #f85cd1;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.card {
+  padding: 15px 0;
+  border-top: 1px solid #eee;
+}
+
+.card p {
+  margin: 8px 0;
+}

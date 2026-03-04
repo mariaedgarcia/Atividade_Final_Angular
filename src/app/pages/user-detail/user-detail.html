@@ -1,0 +1,22 @@
+<div class="container">
+  <a routerLink="/users">Voltar para a lista</a>
+
+  @if (carregando) {
+    <p>Carregando os detalhes...</p>
+  }
+
+  @if (erro) {
+    <p style="color: red;">{{ erro }}</p>
+  }
+
+  @if (user) {
+    <div class="card">
+      <p><strong>Nome: {{ user.name }}</strong></p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Telefone:</strong> {{ user.phone }}</p>
+      <p><strong>Website:</strong> {{ user.website }}</p>
+      <p><strong>Cidade:</strong> {{ user.address.city }}</p>
+      <p><strong>Empresa:</strong> {{ user.company.name }}</p>
+    </div>
+  }
+</div>
