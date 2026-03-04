@@ -1,59 +1,32 @@
-# AtividadeRotas
+1) O que é uma rota dinâmica?
+Ela é uma rota que possui diferentes parâmetro na url. Por exemplo a rota que adicionei no código: 
+    {
+        path: 'users/:id',
+        component: UserDetail
+    }
+Ela é dinâmica pois cada usuário possui um ID e ele vai abrir de acordo com o usuário escolhido, mostrando a página do UserDetail mas, com as informações correspondentes.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.2.
+2) O que é paramMap?
+É a forma como o angular usa para acessar os valores que vem da url de uma rota dinâmica, permitindo capturar os valores da rota. Por exemplo a maneira que adicionei no código:
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      const id = Number(params.get('id'));
 
-## Development server
+      if (id) {
+        this.buscarUsuario(id);
+      } else {
+        this.erro = "id inválido";
+        this.carregando = false;
+        this.cdr.detectChanges();
+      }
+    });
+  }
+Nesse caso ele foi pegando o id que está dentro do meu componente por meio do método get, e o valor do ID foi usado para buscar o usuário correspondente.
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+3) Onde você usou Observable e por quê?
+Usei ele no users-list.ts:
+	this.userService.listarUsuarios().subscribe({
+E no user-detail.ts:
+	this.route.paramMap.subscribe(params => {
+No primeiro caso usei porque os dados dos usuários vem do http e acaba que eles não chegam "na hora", então foi necessário o uso do subscribe para esperar os dados chegarem, e quando isso acontece ele mostra na tela.
+Já no segundo caso, ele faz o componente responder quando o valor da url é alterado
