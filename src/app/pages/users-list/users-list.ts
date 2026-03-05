@@ -24,12 +24,16 @@ export class UsersList implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // os dados dos usuários vem do http e acaba que eles não chegam "na hora", então foi necessário o uso
+    // do subscribe para esperar os dados chegarem, e quando isso acontece ele mostra na tela.
     this.userService.listarUsuarios().subscribe({
+      // Quando funcionar
       next: (dados) => {
-        this.usuarios = dados;
+        this.usuarios = dados; //  Dados vão p/ variável usuario
         this.carregando = false;
         this.cdr.detectChanges();
       },
+      // Se der errado
       error: (err) => {
         console.error(err);
         this.erro = true;

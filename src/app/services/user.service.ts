@@ -7,11 +7,14 @@ import { User } from '../models/user';
   providedIn: 'root',
 })
 export class UserService {
+  // API de teste
   private readonly API = 'https://jsonplaceholder.typicode.com/users';
 
+  // get
   constructor(private http: HttpClient){
   }
 
+  // Manda os dados que ainda não foi executado
   listarUsuarios(): Observable<User[]>{
     return this.http.get<User[]>(this.API);
   }
